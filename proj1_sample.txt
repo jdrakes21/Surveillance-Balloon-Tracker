@@ -1,0 +1,70 @@
+STARTING BALLOON POSITION (17, 14)
+Welcome to the Surveillance Balloon Tracker
+You are searching for the surveillance balloon
+What would you like to do?:
+1. Display Map
+2. Guess Location of Balloon
+3. Exit
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19
+  0  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  1  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  2  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  3  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  4  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  5  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  6  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  7  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  8  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  9  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 10  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 11  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 12  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 13  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 14  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 15  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 16  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 17  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 18  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 19  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+What would you like to do?:
+1. Display Map
+2. Guess Location of Balloon
+3. Exit
+Where would you like to look for the balloon?
+Enter the X coordinate (0 - 19):
+Enter the Y coordinate (0 - 19):
+You didn't find the balloon
+guess x: 10 guess y: 10
+balloon x: 17 balloon y: 14
+The balloon is south of your guess
+The balloon moves in the wind.
+What would you like to do?:
+1. Display Map
+2. Guess Location of Balloon
+3. Exit
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19
+  0  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  1  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  2  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  3  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  4  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  5  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  6  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  7  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  8  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+  9  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 10  $  $  $  $  $  $  $  $  $  $  G  $  $  $  $  $  $  $  $  $
+ 11  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 12  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 13  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 14  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 15  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 16  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 17  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 18  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+ 19  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $  $
+What would you like to do?:
+1. Display Map
+2. Guess Location of Balloon
+3. Exit
+Thank you for Using the Surveillance Balloon Tracker

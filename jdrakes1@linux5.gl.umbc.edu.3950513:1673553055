@@ -1,0 +1,287 @@
+/*****************************************
+** File:    Proj1.cpp
+** Project: CMSC 202 Project 1, Spring 2023
+** Author:  Jervon Drakes
+** Date:    02/26/23
+** Section: 44
+** E-mail:  jdrakes1@umbc.edu
+**
+**
+** This program illustrates a game which allows the user
+** to guess the location of a balloon within a grid acting as
+** a surveillance balloon tracker.
+** 
+**
+***********************************************/
+
+#include <iostream>
+
+#include <cstdlib>
+
+#include <ctime>
+
+#include <iomanip>
+
+using namespace std;
+
+const char LOCATION_NOT_SEARCHED = '$'; // value given to location which has not been guessed
+const char LOCATION_GUESSED = 'G'; // value given to location which has been guessed
+const int MAP_HEIGHT = 20; // the height of the map
+const int MAP_WIDTH = 20; // the width of the map
+const int coordinateSize = 2; // number of coordinates
+
+//-------------------------------------------------------
+// Name: buildMap
+// PreCondition:  There is no pre condition
+// PostCondition: A map is built
+//---------------------------------------------------------
+void buildMap(char arr[MAP_HEIGHT][MAP_WIDTH]);
+
+//-------------------------------------------------------
+// Name: startBallon
+// PreCondition: There is no pre condition
+// PostCondition: Generates numbers which acts as the balloon's location
+//---------------------------------------------------------
+void startBalloon(int MAX, int MAX_2, int gridArr[2]);
+
+//-------------------------------------------------------
+// Name: printMap
+// PreCondition:  A map was built
+// PostCondition: The map which was built is printed 
+//---------------------------------------------------------
+void printMap(char arr[MAP_HEIGHT][MAP_WIDTH]);
+
+//-------------------------------------------------------
+// Name: guessLocation
+// PreCondition: The balloon's coordinates are stored 
+// PostCondition: Returns true if the user's inputs are the balloon's coordinates
+//---------------------------------------------------------
+bool guessLocation(int myArr[], char arr[MAP_HEIGHT][MAP_WIDTH]);
+
+//-------------------------------------------------------
+// Name: guessDirection
+// PreCondition:  There is no pre condition
+// PostCondition: Determines in which direction the balloon is if the user's input is incorrect
+//---------------------------------------------------------
+void guessDirection(int mapArr[], int x_value, int y_value);
+
+//-------------------------------------------------------
+// Name: resetMap
+// PreCondition:  There is no pre condition
+// PostCondition: Resets the map to the original map which was built
+//---------------------------------------------------------
+void resetMap(char arr[MAP_HEIGHT][MAP_WIDTH], int mapArr[]);
+
+int main() {
+
+  char arr[MAP_HEIGHT][MAP_WIDTH] = {}; // declaration of a 2d-array used to build the map
+  int gridArr[coordinateSize]; 
+
+  buildMap(arr); 
+  string playValue = " "; // the variable play value declared which will determine if the user wants to play again
+
+ 
+  bool gameWinner = false; // helps determine if the user has won the game 
+  startBalloon(MAP_WIDTH, MAP_HEIGHT, gridArr);
+
+  int choice = 0; // helps determine if the user selects a valid choice
+  
+  // the following is done once certain conditions are met
+  do {
+      
+    cout << "Welcome to the Surveillance Balloon Tracker" << endl;
+    cout << "You are searching for the surveillance balloon" << endl;
+
+
+    while (choice != 3) {
+        
+      // the program prints a menu asking the what they would like to do
+      do {
+        cout << "What would you like to do ? " << endl; 
+        cout << "1. Display Map" << endl;
+        cout << "2. Guess location of balloon" << endl;
+        cout << "3. Exit" << endl;
+        cin >> choice;
+        
+        // if the user enters a choice which does not meet these conditions the statement below is printed
+        if (choice < 1 || choice > 3) {
+          cout << "Please choose again" << endl;
+        }
+
+      } while (choice < 1 || choice > 3);
+
+      // various results can occur based on the choice the user selects
+      switch (choice) {
+      
+      // the map is printed if the user selects choice 1 
+      case 1:
+        printMap(arr);
+        break;
+      
+      // the user is prompted to enter values to determine the balloon's location if choice 2 is selected 
+      case 2:
+        gameWinner = guessLocation(gridArr, arr);
+        
+        do{
+          if (gameWinner == true) {
+            // the user is asked if they want to play again once  
+            cout << "Do you want to play again?" << endl;
+            cin >> playValue;
+            
+          }
+        } while (playValue != "y" && playValue != "n" && gameWinner == true);
+        
+        // if the user's answer is yes then the menu is printed again 
+        if (playValue == "y") {
+          gameWinner = false;
+          
+        // if the user's answer is not then the game finishes
+        }else if (playValue == "n"){
+          cout << "Thank you for using the surveillance balloon tracker" << endl;
+          choice = 3;
+        }
+        break;
+      
+      // the game is finished if the user selects choice 4 
+      case 3:
+        cout << "Thank you for using the surveillance balloon tracker";
+        break;
+      }
+    }
+    // above code can be executed more than once these conditions are met
+  } while (gameWinner == false && playValue == "y" && choice != 3);
+  
+  return 0;
+}
+
+void buildMap(char arr[MAP_HEIGHT][MAP_WIDTH]) {
+  
+  for (int i = 0; i < MAP_HEIGHT; i++) {
+    for (int j = 0; j < MAP_WIDTH; j++) {
+        // the map is built with the value of LOCATION_NOT_SEARCHED
+        arr[i][j] = LOCATION_NOT_SEARCHED;
+    }
+  }
+}
+
+void startBalloon(int MAX, int MAX_2, int gridArr[coordinateSize]) {
+    
+  srand(time(NULL));
+  time(NULL);
+
+  // a random number is generated and assigned to the first value within gridArr
+  gridArr[0]= rand() % MAX;
+  
+  // another random is generated and assigned to the second value with gridArr
+  gridArr[1] = rand() % MAX_2;
+
+}
+
+
+
+void printMap(char arr[MAP_HEIGHT][MAP_WIDTH]) {
+
+  // formats the width between the numbers displayed as the map's width
+  cout << setw(3) << left << " ";
+  for (int i = 0; i < MAP_WIDTH; i++) {
+    cout << setw(2) << left << i << " ";
+  }
+  cout << endl;
+  
+  // formats the width between the numbers displayed as the map's height
+  for (int i = 0; i < MAP_HEIGHT; i++) {
+    if (i < 10) {
+      cout << " ";
+    }
+    
+    cout << i << " ";
+    for (int j = 0; j < MAP_WIDTH; j++) {
+      // formats the distance between the locations on the map's grid
+      cout << setw(2) << left << arr[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
+
+bool guessLocation(int myArr[], char arr[MAP_HEIGHT][MAP_WIDTH]) {
+  
+  int xCoordinate = myArr[0];// assigns the ballon's x coordinate as the first value of myArr
+  int yCoordinate = myArr[1]; // assigns the balloon's y coordinate as the second value of myArr
+  
+  int xValue = 0;
+  int yValue = 0;
+  
+  int maxWidth = MAP_WIDTH - 1; // the maximum x coordinate 
+  int maxHeight = MAP_HEIGHT - 1; // the maximum y coordinate
+  
+  // the user is asked the following to determine the balloon's location
+  do {
+    cout << "Where would you like to look for the balloon?";
+    cout << endl;
+    cout << "Enter the X coordinate(0 - " << maxWidth << "):" << endl;
+    cin >> xValue;
+    cout << "Enter the Y coordinate(0 - " << maxHeight << "):" << endl;
+    cin >> yValue;
+  
+  // the above can be done more than once these conditions are met
+  } while (xValue < 0 || xValue > maxWidth || yValue < 0 || yValue > maxHeight);
+  
+  // determines if the user's inputs are the same as the balloon's location
+  if (xValue == xCoordinate && yValue == yCoordinate) {
+    cout << "You found the balloon! " << endl;
+    
+    // new numbers are generated for the balloon's location as the game may be restarted
+    startBalloon(MAP_WIDTH, MAP_HEIGHT, myArr);
+    
+    // the map is also reset
+    resetMap(arr, myArr);
+    return true;
+  
+  // the following is done once the condition is not met
+  } else {
+    arr[yValue][xValue] = LOCATION_GUESSED;
+    
+    cout << "You didn't find the balloon" << endl;
+    
+    // the user is told the direction in which the balloon can be found
+    guessDirection(myArr, xValue, yValue);
+    return false;
+
+  }
+
+}
+void guessDirection(int mapArr[], int xValue, int yValue) {
+    
+  int xLocation = mapArr[0]; // balloon's x coordinate
+  int yLocation = mapArr[1]; // balloon's y coordinate
+
+  // the user's guess is south of the balloon's location
+  if (yValue < yLocation) {
+    cout << "The balloon is south of your guess" << endl;
+  
+  // the user's guess is north of the balloon's location
+  } else if (yValue > yLocation) {
+    cout << "The balloon is north of your guess" << endl;
+  
+  // the user's guess is west of the balloon's location
+  } else if (yValue == yLocation && xValue > xLocation) {
+    cout << "The balloon is west of your guess" << endl;
+  
+  // the user's guess is east of the balloon's location   
+  } else if (yValue == yLocation && xValue < xLocation) {
+    cout << "The balloon is east of your guess" << endl;
+  }
+}
+
+void resetMap(char arr[MAP_HEIGHT][MAP_WIDTH], int mapArr[]) {
+    
+  for (int i = 0; i < MAP_WIDTH; i++) {
+    for (int j = 0; j < MAP_HEIGHT; j++) {
+        // the map is reset to the value of LOCATION_NOT_SEARCHED
+        arr[i][j] = LOCATION_NOT_SEARCHED;
+        
+        // new coordinates for the balloon are generated 
+        startBalloon(MAP_WIDTH, MAP_HEIGHT, mapArr);
+    }
+  }
+}
